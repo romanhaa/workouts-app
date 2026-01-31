@@ -18,18 +18,29 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
 
     const [countdown, setCountdown] = useState(currentStep?.duration ?? 0);
 
-    const playSound = () => {
-        if (!audioContextRef.current) return;
-        const context = audioContextRef.current;
-        const oscillator = context.createOscillator();
-        const gainNode = context.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(context.destination);
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(440, context.currentTime);
-        gainNode.gain.setValueAtTime(0.5, context.currentTime);
-        oscillator.start(context.currentTime);
-        oscillator.stop(context.currentTime + 0.15);
+    const triggerFeedback = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(200); // Vibrate for 200ms
+        } else {
+            // Fallback to sound if vibration is not supported
+            if (!audioContextRef.current) {
+                const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+                audioContextRef.current = context;
+            }
+            if (audioContextRef.current.state === 'suspended') {
+                audioContextRef.current.resume();
+            }
+            const context = audioContextRef.current;
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, context.currentTime);
+            gainNode.gain.setValueAtTime(0.5, context.currentTime);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.15);
+        }
     };
 
     useEffect(() => {
@@ -41,7 +52,7 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
         if (isPaused || !currentStep) return;
 
         if (countdown === 0) {
-            playSound();
+            triggerFeedback();
             if (currentStepIndex < allSteps.length - 1) {
                 setCurrentStepIndex(currentStepIndex + 1);
             } else {
@@ -73,7 +84,7 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
         audioContextRef.current.resume();
     }
     if (isPaused) {
-        playSound();
+        triggerFeedback();
     }
     setIsPaused(!isPaused);
   }
