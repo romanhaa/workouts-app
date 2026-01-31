@@ -128,53 +128,31 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
     const [countdown, setCountdown] = useState(currentStep?.duration ?? 0);
 
     useEffect(() => {
-        // Reset countdown whenever currentStep changes, or if workout is unpaused/started
-        setCountdown(currentStep?.duration ?? 0);
-    }, [currentStep]);
-
-    useEffect(() => {
         if (isPaused || !currentStep) {
             return;
         }
 
-        let timer: number | undefined;
-
-        if (countdown > 0) {
-            timer = setInterval(() => {
-                setCountdown(prev => {
-                    if (prev > 1) {
-                        return prev - 1;
-                    }
-                    // If prev is 1, next tick it will be 0. We'll handle feedback and advancement
-                    // in a separate useEffect that watches for countdown === 0.
-                    return 0;
-                });
-            }, 1000);
+        if (countdown === 0) {
+            const advance = async () => {
+                await triggerFeedback();
+                if (currentStepIndex < allSteps.length - 1) {
+                    const nextStep = allSteps[currentStepIndex + 1];
+                    setCountdown(nextStep.step.duration); // Set countdown for the next step
+                    setCurrentStepIndex(prev => prev + 1);
+                } else {
+                    onFinish();
+                }
+            };
+            advance();
+            return;
         }
 
-        return () => {
-            if (timer) clearInterval(timer);
-        };
-    }, [isPaused, currentStep, countdown]); // Added countdown to dependencies
+        const timer = setInterval(() => {
+            setCountdown(prev => prev - 1);
+        }, 1000);
 
-    useEffect(() => {
-        // This effect runs when countdown becomes 0, and we are not paused,
-        // and we haven't reached the last step.
-        if (!isPaused && countdown === 0 && currentStep && currentStepIndex < allSteps.length - 1) {
-            const advanceStep = async () => {
-                await triggerFeedback();
-                setCurrentStepIndex(prevIndex => prevIndex + 1);
-            };
-            advanceStep();
-        } else if (!isPaused && countdown === 0 && currentStepIndex === allSteps.length -1) {
-            // Last step, countdown reaches 0
-            const giveFeedbackAndFinish = async () => {
-                await triggerFeedback();
-                onFinish();
-            };
-            giveFeedbackAndFinish();
-        }
-    }, [countdown, isPaused, currentStep, currentStepIndex, allSteps.length, onFinish, triggerFeedback]);
+        return () => clearInterval(timer);
+    }, [isPaused, countdown, currentStep, currentStepIndex, allSteps.length, onFinish, triggerFeedback]);
 
 
   if (!currentStep) {
