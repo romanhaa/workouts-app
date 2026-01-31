@@ -47,9 +47,20 @@ function WorkoutOverview({ workout, onStart, onBack, formatDuration }: WorkoutOv
         <button onClick={onStart}>Start Workout</button>
       </div>
       <div className="step-list">
-        {workout.steps.map((step, index) => (
-          <StepView key={index} step={step} formatDuration={formatDuration} />
-        ))}
+        {workout.sections ? (
+          workout.sections.map((section, sectionIndex) => (
+            <div key={sectionIndex} className="workout-section">
+              <h3>{section.name}</h3>
+              {section.steps.map((step, stepIndex) => (
+                <StepView key={stepIndex} step={step} formatDuration={formatDuration} />
+              ))}
+            </div>
+          ))
+        ) : (
+          workout.steps?.map((step, index) => (
+            <StepView key={index} step={step} formatDuration={formatDuration} />
+          ))
+        )}
       </div>
     </div>
   );

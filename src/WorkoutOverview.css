@@ -73,3 +73,23 @@
   color: #888;     /* Slightly lighter color */
   padding: 0.25rem 0.5rem; /* Reduced vertical padding */
 }
+
+.workout-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.workout-section:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.workout-section h3 {
+  font-size: 1.2em;
+  color: #2196f3; /* A distinct color for section titles */
+  margin-bottom: 0.75rem;
+  text-align: left;
+  padding-left: 0.5rem;
+}

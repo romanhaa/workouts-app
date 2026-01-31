@@ -13,20 +13,45 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
     const [isPaused, setIsPaused] = useState(true);
     const audioContextRef = useRef<AudioContext | null>(null);
 
-    const allSteps = workout.steps.flatMap(s => {
-        if (s.type === 'repetition') {
-            const repetitionSteps: WorkoutStep[] = [];
+    type FlattenedWorkoutStep = {
+      step: WorkoutStep;
+      sectionName?: string;
+    };
+
+    const allSteps: FlattenedWorkoutStep[] = [];
+
+    if (workout.sections) {
+      workout.sections.forEach(section => {
+        section.steps.forEach(s => {
+          if (s.type === 'repetition') {
             for (let i = 0; i < s.count; i++) {
-                repetitionSteps.push(...s.steps);
+              s.steps.forEach(repStep => allSteps.push({ step: repStep, sectionName: section.name }));
+              if (i < s.count - 1 && s.restBetweenReps) {
+                allSteps.push({ step: { type: 'rest', duration: s.restBetweenReps }, sectionName: section.name });
+              }
+            }
+          } else {
+            allSteps.push({ step: s, sectionName: section.name });
+          }
+        });
+      });
+    } else if (workout.steps) {
+      workout.steps.forEach(s => {
+        if (s.type === 'repetition') {
+            for (let i = 0; i < s.count; i++) {
+                s.steps.forEach(repStep => allSteps.push({ step: repStep }));
                 if (i < s.count - 1 && s.restBetweenReps) {
-                    repetitionSteps.push({ type: 'rest', duration: s.restBetweenReps });
+                    allSteps.push({ step: { type: 'rest', duration: s.restBetweenReps } });
                 }
             }
-            return repetitionSteps;
+        } else {
+            allSteps.push({ step: s });
         }
-        return s;
-    });
-    const currentStep: WorkoutStep | undefined = allSteps[currentStepIndex];
+      });
+    }
+    const currentFlattenedStep: FlattenedWorkoutStep | undefined = allSteps[currentStepIndex];
+    const currentStep: WorkoutStep | undefined = currentFlattenedStep?.step;
+    const currentSectionName: string | undefined = currentFlattenedStep?.sectionName;
 
     const [countdown, setCountdown] = useState(currentStep?.duration ?? 0);
 
@@ -108,6 +133,10 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
       <div className="progress-bar">
         <div style={{ width: `${progress}%` }} />
       </div>
+
+      {currentSectionName && (
+        <h3 className="current-section-name">{currentSectionName}</h3>
+      )}
 
       <div className="current-step">
         <h2>{currentStep.type === 'exercise' ? currentStep.name : 'Rest'}</h2>

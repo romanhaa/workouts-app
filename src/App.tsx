@@ -8,16 +8,27 @@ import './App.css';
 import './WorkoutRunner.css';
 import './WorkoutOverview.css';
 
-const calculateStepsDuration = (steps: WorkoutStep[]): number => {
+const _calculateStepsDuration = (steps: WorkoutStep[]): number => {
   return steps.reduce((total, step) => {
     if (step.type === 'repetition') {
-      const repetitionDuration = calculateStepsDuration(step.steps);
+      const repetitionDuration = _calculateStepsDuration(step.steps);
       const restBetweenRepsDuration = step.restBetweenReps ? step.restBetweenReps * (step.count > 0 ? step.count - 1 : 0) : 0;
       return total + (repetitionDuration * step.count) + restBetweenRepsDuration;
     } else {
       return total + step.duration;
     }
   }, 0);
+};
+
+const calculateTotalWorkoutDuration = (workout: Workout): number => {
+  if (workout.sections) {
+    return workout.sections.reduce((total, section) => {
+      return total + _calculateStepsDuration(section.steps);
+    }, 0);
+  } else if (workout.steps) {
+    return _calculateStepsDuration(workout.steps);
+  }
+  return 0;
 };
 
 const formatDuration = (totalSeconds: number): string => {
@@ -88,7 +99,7 @@ function App() {
       </header>
       <div className="workout-list">
         {workouts.map((workout) => {
-          const totalDuration = calculateStepsDuration(workout.steps);
+          const totalDuration = calculateTotalWorkoutDuration(workout);
           const formattedDuration = formatDuration(totalDuration);
           return (
             <button key={workout.id} onClick={() => handleSelectWorkout(workout)}>

@@ -27,10 +27,16 @@ export interface RepetitionStep extends BaseStep {
 
 export type WorkoutStep = ExerciseStep | RestStep | RepetitionStep;
 
+export interface WorkoutSection {
+  name: string;
+  steps: WorkoutStep[];
+}
+
 export interface Workout {
   id: string;
   name: string;
-  steps: WorkoutStep[];
+  steps?: WorkoutStep[]; // Make optional
+  sections?: WorkoutSection[]; // New: Optional sections
 }
 
 export interface WorkoutData {
