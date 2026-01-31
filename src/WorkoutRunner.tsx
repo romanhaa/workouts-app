@@ -6,9 +6,10 @@ import type { Workout, WorkoutStep } from './types';
 interface WorkoutRunnerProps {
   workout: Workout;
   onFinish: () => void;
+  onEnd: () => void;
 }
 
-function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
+function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(true);
     const audioContextRef = useRef<AudioContext | null>(null);
@@ -223,7 +224,7 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
         </button>
         <button onClick={handleNext} disabled={currentStepIndex === allSteps.length - 1} className="nav-button">Next</button>
       </div>
-      <button className="end-workout" onClick={onFinish}>End Workout</button>
+      <button className="end-workout" onClick={onEnd}>End Workout</button>
     </div>
   );
 }

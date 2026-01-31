@@ -64,6 +64,7 @@ function App() {
           <WorkoutRunner
             workout={selectedWorkout}
             onFinish={handleWorkoutFinish}
+            onEnd={handleBackToWorkouts}
           />
         </div>
       );
