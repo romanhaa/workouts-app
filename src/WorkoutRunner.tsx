@@ -56,6 +56,30 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
 
     const [countdown, setCountdown] = useState(currentStep?.duration ?? 0);
 
+    const handlePrevious = () => {
+        if (currentStepIndex > 0) {
+            setCurrentStepIndex(prev => {
+                const newIndex = prev - 1;
+                setCountdown(allSteps[newIndex]?.step.duration ?? 0);
+                return newIndex;
+            });
+            setIsPaused(true); // Pause when navigating
+        }
+    };
+
+    const handleNext = () => {
+        if (currentStepIndex < allSteps.length - 1) {
+            setCurrentStepIndex(prev => {
+                const newIndex = prev + 1;
+                setCountdown(allSteps[newIndex]?.step.duration ?? 0);
+                return newIndex;
+            });
+            setIsPaused(true); // Pause when navigating
+        } else {
+            onFinish();
+        }
+    };
+
     const triggerFeedback = async () => { // Make it async
         // Always play sound
         if (!audioContextRef.current) {
@@ -170,9 +194,11 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
       </div>
 
       <div className="controls">
+        <button onClick={handlePrevious} disabled={currentStepIndex === 0} className="nav-button">Previous</button>
         <button onClick={handlePlayPause}>
           {isPaused ? 'Start' : 'Pause'}
         </button>
+        <button onClick={handleNext} disabled={currentStepIndex === allSteps.length - 1} className="nav-button">Next</button>
         <button onClick={onFinish}>End Workout</button>
       </div>
     </div>

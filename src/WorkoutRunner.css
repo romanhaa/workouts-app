@@ -74,4 +74,13 @@
     color: #007bff; /* A blue color to distinguish from main exercise */
     margin-bottom: 0.5rem;
   }
+
+  .controls .nav-button {
+    background-color: #6c757d; /* Grey */
+    color: white;
+  }
+
+  .controls .nav-button:hover {
+    background-color: #5a6268; /* Darker grey on hover */
+  }
   
