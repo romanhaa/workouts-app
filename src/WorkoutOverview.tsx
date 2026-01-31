@@ -12,7 +12,7 @@ const StepView = ({ step, formatDuration }: { step: WorkoutStep, formatDuration:
   if (step.type === 'repetition') {
     return (
       <div className="step-repetition">
-        <div className="step-repetition-header">Repeat {step.count} times:</div>
+        <div className="step-repetition-header">Repeat {step.count} times</div>
 
         <div className="step-repetition-body">
           {step.steps.map((s, i) => <StepView key={i} step={s} formatDuration={formatDuration} />)}
@@ -25,7 +25,7 @@ const StepView = ({ step, formatDuration }: { step: WorkoutStep, formatDuration:
   }
 
   return (
-    <div className="step">
+    <div className={`step ${step.type === 'rest' ? 'step-rest' : ''}`}>
       <div>
         <span>{step.type === 'exercise' ? step.name : 'Rest'}</span>
         {step.type === 'exercise' && step.description && (

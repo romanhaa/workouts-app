@@ -68,3 +68,8 @@
 .workout-overview .controls button:first-child:hover {
     background-color: #5a6268;
 }
+.step.step-rest {
+  font-size: 0.8em; /* Even smaller font */
+  color: #888;     /* Slightly lighter color */
+  padding: 0.25rem 0.5rem; /* Reduced vertical padding */
+}
