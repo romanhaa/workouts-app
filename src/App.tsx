@@ -32,7 +32,7 @@ function App() {
   const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
 
   useEffect(() => {
-    fetch('/workouts.json')
+    fetch('/workouts-app-new/workouts.json')
       .then((response) => response.json())
       .then((data: WorkoutData) => setWorkouts(data.workouts))
       .catch((error) => console.error('Error fetching workouts:', error));
