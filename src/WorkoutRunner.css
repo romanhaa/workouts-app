@@ -1,0 +1,65 @@
+.workout-runner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .workout-runner h1 {
+    color: #333; /* Darken workout name for readability */
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-bar div {
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .current-step {
+    text-align: center;
+  }
+  
+  .current-step h2, .countdown {
+    color: #333;
+  }
+
+  .current-step h2 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .countdown {
+    font-size: 6rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .controls button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .controls button:last-child {
+    background-color: #dc3545;
+  }
+  
+  .controls button:last-child:hover {
+    background-color: #c82333;
+  }
+  

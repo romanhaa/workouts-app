@@ -1,0 +1,33 @@
+{
+  "workouts": [
+    {
+      "id": "full-body-1",
+      "name": "Full Body Strength",
+      "steps": [
+        { "type": "exercise", "name": "Jumping Jacks", "duration": 5 },
+        { "type": "rest", "duration": 5 },
+        {
+          "type": "repetition",
+          "count": 3,
+          "steps": [
+            { "type": "exercise", "name": "Push-ups", "duration": 5 },
+            { "type": "rest", "duration": 5 },
+            { "type": "exercise", "name": "Squats", "duration": 5 },
+            { "type": "rest", "duration": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick-abs-1",
+      "name": "Quick Abs Burn",
+      "steps": [
+        { "type": "exercise", "name": "Crunches", "duration": 45 },
+        { "type": "rest", "duration": 15 },
+        { "type": "exercise", "name": "Leg Raises", "duration": 45 },
+        { "type": "rest", "duration": 15 },
+        { "type": "exercise", "name": "Plank", "duration": 60 }
+      ]
+    }
+  ]
+}
