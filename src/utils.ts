@@ -14,6 +14,10 @@ const _calculateStepsDuration = (steps: WorkoutStep[]): number => {
   }, 0);
 };
 
+export const calculateStepsDuration = (steps: WorkoutStep[]): number => {
+  return _calculateStepsDuration(steps);
+};
+
 export const calculateTotalWorkoutDuration = (workout: Workout): number => {
   if (workout.sections) {
     return workout.sections.reduce((total, section) => {

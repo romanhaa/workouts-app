@@ -57,7 +57,8 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
     const triggerFeedback = useCallback(async () => { // Make it async
         // Always play sound
         if (!audioContextRef.current) {
-            const context = new (window.AudioContext || (window as typeof window.webkitAudioContext).webkitAudioContext)();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const context = new (window.AudioContext || (window as any).webkitAudioContext)();
             audioContextRef.current = context;
         }
         if (audioContextRef.current.state === 'suspended') {
@@ -183,7 +184,8 @@ function WorkoutRunner({ workout, onFinish }: WorkoutRunnerProps) {
 
   const handlePlayPause = async () => {
     if (!audioContextRef.current) {
-        const context = new (window.AudioContext || (window as typeof window.webkitAudioContext).webkitAudioContext)();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const context = new (window.AudioContext || (window as any).webkitAudioContext)();
         audioContextRef.current = context;
     }
     if (audioContextRef.current.state === 'suspended') {
