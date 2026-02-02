@@ -1,6 +1,6 @@
 // src/WorkoutOverview.tsx
 import type { Workout, WorkoutStep } from './types';
-import { calculateStepsDuration } from './utils';
+import { calculateStepsDuration, calculateTotalWorkoutDuration } from './utils';
 
 interface WorkoutOverviewProps {
   workout: Workout;
@@ -40,9 +40,19 @@ const StepView = ({ step, formatDuration }: { step: WorkoutStep, formatDuration:
 
 
 function WorkoutOverview({ workout, onStart, onBack, formatDuration }: WorkoutOverviewProps) {
+  const totalDuration = calculateTotalWorkoutDuration(workout);
+
   return (
     <div className="workout-overview">
       <h1>{workout.name}</h1>
+      <p className="total-duration">Total Duration: {formatDuration(totalDuration)} min</p>
+      {workout.muscleGroups && (
+        <div className="muscle-groups">
+          {workout.muscleGroups.map((group, index) => (
+            <span key={index} className="muscle-group">{group}</span>
+          ))}
+        </div>
+      )}
       <div className="controls">
         <button onClick={onBack}>Back</button>
         <button onClick={onStart}>Start Workout</button>
@@ -51,7 +61,7 @@ function WorkoutOverview({ workout, onStart, onBack, formatDuration }: WorkoutOv
         {workout.sections ? (
           workout.sections.map((section, sectionIndex) => (
             <div key={sectionIndex} className="workout-section">
-              <h3>{section.name} <span>({formatDuration(calculateStepsDuration(section.steps))} min)</span></h3>
+              <h3>{section.name} <span>({formatDuration(calculateStepsDuration(section.steps))})</span></h3>
               {section.steps.map((step, stepIndex) => (
                 <StepView key={stepIndex} step={step} formatDuration={formatDuration} />
               ))}

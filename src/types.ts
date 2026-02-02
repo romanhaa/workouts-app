@@ -37,6 +37,7 @@ export interface Workout {
   name: string;
   steps?: WorkoutStep[]; // Make optional
   sections?: WorkoutSection[]; // New: Optional sections
+  muscleGroups?: string[];
 }
 
 export interface WorkoutData {

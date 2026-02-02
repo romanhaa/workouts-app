@@ -13,6 +13,28 @@
   color: #333;
 }
 
+.workout-overview .total-duration {
+  color: #555; /* Darker color for readability */
+  margin-top: -1rem; /* Reduce spacing by pulling it up */
+  font-size: 1.1em; /* Slightly larger than default paragraph text */
+}
+
+.muscle-groups {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -1rem;
+}
+
+.muscle-group {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.9em;
+}
+
 .step-list {
   width: 100%;
   background-color: white;
