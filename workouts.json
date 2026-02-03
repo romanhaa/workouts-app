@@ -1,8 +1,8 @@
 {
   "workouts": [
     {
-      "id": "full-body-1",
-      "name": "Full Body Strength",
+      "id": "test",
+      "name": "Test",
       "muscleGroups": ["Full Body", "Legs", "Chest", "Shoulders", "Triceps"],
       "steps": [
         { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
