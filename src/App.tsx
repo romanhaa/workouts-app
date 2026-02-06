@@ -6,6 +6,7 @@ import WorkoutRunner from './WorkoutRunner';
 import WorkoutOverview from './WorkoutOverview';
 import WorkoutFinished from './WorkoutFinished';
 import { calculateTotalWorkoutDuration, formatDuration } from './utils';
+import { filterTestWorkouts } from './workoutFilters';
 import './App.css';
 import './WorkoutRunner.css';
 import './WorkoutOverview.css';
@@ -22,14 +23,7 @@ function App() {
     fetch('/workouts-app/workouts.json')
       .then((response) => response.json())
       .then((data: WorkoutData) => {
-        if (import.meta.env.DEV) {
-          setWorkouts(data.workouts);
-        } else {
-          const filteredWorkouts = data.workouts.filter(
-            (workout) => !/^test(-\d+)?$/.test(workout.id)
-          );
-          setWorkouts(filteredWorkouts);
-        }
+        setWorkouts(filterTestWorkouts(data.workouts));
       })
       .catch((error) => console.error('Error fetching workouts:', error));
   }, []);
