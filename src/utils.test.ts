@@ -1,7 +1,7 @@
 // src/utils.test.ts
 import { describe, it, expect } from 'vitest';
 import { calculateStepsDuration, calculateTotalWorkoutDuration, formatDuration, formatTimeLeft } from './utils';
-import { Workout, RepetitionStep, ExerciseStep, RestStep } from './types';
+import type { Workout, RepetitionStep, ExerciseStep, RestStep } from './types';
 
 describe('utils', () => {
   describe('calculateStepsDuration', () => {

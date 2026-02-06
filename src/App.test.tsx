@@ -1,5 +1,5 @@
 // src/App.test.tsx
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach, type MockInstance } from 'vitest';
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import App from './App';
 import type { WorkoutData } from './types';
@@ -58,24 +58,24 @@ const mockWorkouts: WorkoutData = {
 };
 
 describe('App', () => {
-  const originalFetch = global.fetch;
+  const originalFetch = globalThis.fetch;
 
   beforeEach(() => {
     // Mock fetch API
-    global.fetch = vi.fn(() =>
+    globalThis.fetch = vi.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(mockWorkouts),
       }) as Promise<Response>
     );
     // Reset mocks for child components
-    WorkoutOverview.mockClear();
-    WorkoutRunner.mockClear();
-    WorkoutFinished.mockClear();
+    (WorkoutOverview as unknown as MockInstance).mockClear();
+    (WorkoutRunner as unknown as MockInstance).mockClear();
+    (WorkoutFinished as unknown as MockInstance).mockClear();
   });
 
   afterEach(() => {
     // Restore original fetch
-    global.fetch = originalFetch;
+    globalThis.fetch = originalFetch;
     // Clean up DOM after each test
     cleanup();
   });
@@ -84,7 +84,7 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByText('Select a Workout')).toBeInTheDocument();
-    expect(global.fetch).toHaveBeenCalledWith('/workouts-app/workouts.json');
+    expect(globalThis.fetch).toHaveBeenCalledWith('/workouts-app/workouts.json');
 
     await waitFor(() => {
       expect(screen.getByText('Workout One')).toBeInTheDocument();

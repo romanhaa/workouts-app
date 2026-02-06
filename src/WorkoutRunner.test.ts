@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useMemo } from 'react';
-import type { Workout, RunnabaleWorkoutStep, RunnableStep, ExerciseStep, RestStep, RepetitionStep } from './types';
+import type { Workout, RunnabaleWorkoutStep, RunnableStep, RepetitionStep } from './types';
 
 // Helper function to extract the allSteps logic from WorkoutRunner.tsx
 const useFlattenedSteps = (workout: Workout) => {
