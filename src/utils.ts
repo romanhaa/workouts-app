@@ -34,3 +34,8 @@ export const formatDuration = (totalSeconds: number): string => {
   const seconds = totalSeconds % 60;
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 };
+
+export const formatTimeLeft = (totalSeconds: number): string => {
+  const minutes = Math.round(totalSeconds / 60);
+  return `${minutes} min`;
+};

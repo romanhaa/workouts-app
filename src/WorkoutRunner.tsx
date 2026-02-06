@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import type { Workout, WorkoutStep } from './types';
+import { calculateTotalWorkoutDuration, formatTimeLeft } from './utils';
 
 interface WorkoutRunnerProps {
   workout: Workout;
@@ -227,18 +228,34 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
       return null;
     }, [allSteps, currentStepIndex]);
 
+    const {
+      totalWorkoutDuration,
+      elapsedDuration,
+    } = useMemo(() => {
+      const totalDuration = calculateTotalWorkoutDuration(workout);
+      const elapsed = allSteps.slice(0, currentStepIndex).reduce((acc, curr) => acc + curr.step.duration, 0);
+      return {
+        totalWorkoutDuration: totalDuration,
+        elapsedDuration: elapsed,
+      };
+    }, [workout, currentStepIndex, allSteps]);
+
+    const remainingTimeInSeconds = totalWorkoutDuration - elapsedDuration;
+    const progressPercentage = totalWorkoutDuration > 0 ? (elapsedDuration / totalWorkoutDuration) * 100 : 0;
+
     // Render logic below
   if (!currentStep) {
     return <div>Workout Complete!</div>;
   }
 
-  const progress = (currentStepIndex / allSteps.length) * 100;
-
   return (
     <div className="workout-runner">
       <h1>{workout.name}</h1>
       <div className="progress-bar">
-        <div style={{ width: `${progress}%` }} />
+        <div className="progress-bar-fill" style={{ width: `${progressPercentage}%` }} />
+        <div className="progress-bar-text">
+          {`${Math.round(progressPercentage)}% (${formatTimeLeft(remainingTimeInSeconds)})`}
+        </div>
       </div>
 
       {currentSectionName && (

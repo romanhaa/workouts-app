@@ -18,12 +18,23 @@
     background-color: #e9ecef;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
   }
 
-  .progress-bar div {
+  .progress-bar-fill {
     height: 100%;
     background-color: #28a745;
     transition: width 0.5s ease-in-out;
+  }
+
+  .progress-bar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #333;
+    /* font-weight: 550; */
   }
 
   .current-step {
@@ -50,12 +61,12 @@
     text-align: center;
     color: #666;
   }
-  
+
   .next-exercise-preview h4 {
     margin: 0;
     font-size: 1rem;
   }
-  
+
   .next-exercise-preview p {
     margin: 0;
     font-size: 1.2rem;
