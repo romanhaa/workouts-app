@@ -1,20 +1,95 @@
 {
   "workouts": [
     {
-      "id": "test",
-      "name": "Test",
-      "muscleGroups": ["Full Body", "Legs", "Chest", "Shoulders", "Triceps"],
+      "id": "test-1",
+      "name": "Test workout without sections",
       "steps": [
         { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
         { "type": "rest", "duration": 5 },
         {
           "type": "repetition",
           "count": 3,
+          "restBetweenReps": 10,
           "steps": [
             { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
             { "type": "rest", "duration": 5 },
-            { "type": "exercise", "name": "Squats", "duration": 5 },
-            { "type": "rest", "duration": 5 }
+            { "type": "exercise", "name": "Squats", "duration": 5 }
+          ]
+        },
+        {
+          "type": "repetition",
+          "count": 2,
+          "restBetweenReps": 5,
+          "steps": [
+            {
+              "type": "repetition",
+              "count": 2,
+              "restBetweenReps": 5,
+              "steps": [
+                { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 5 }
+              ]
+            },
+            { "type": "rest", "duration": 5 },
+            {
+              "type": "repetition",
+              "count": 2,
+              "restBetweenReps": 5,
+              "steps": [
+                { "type": "exercise", "name": "Mountain Climbers", "duration": 5 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test-2",
+      "name": "Test workout with sections",
+      "sections": [
+        {
+          "name": "Phase 1",
+          "steps": [
+            { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
+            { "type": "rest", "duration": 5 },
+            {
+              "type": "repetition",
+              "count": 3,
+              "restBetweenReps": 10,
+              "steps": [
+                { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
+                { "type": "rest", "duration": 5 },
+                { "type": "exercise", "name": "Squats", "duration": 5 }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Phase 2",
+          "steps": [
+            {
+              "type": "repetition",
+              "count": 2,
+              "restBetweenReps": 5,
+              "steps": [
+                {
+                  "type": "repetition",
+                  "count": 2,
+                  "restBetweenReps": 5,
+                  "steps": [
+                    { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 5 }
+                  ]
+                },
+                { "type": "rest", "duration": 5 },
+                {
+                  "type": "repetition",
+                  "count": 2,
+                  "restBetweenReps": 5,
+                  "steps": [
+                    { "type": "exercise", "name": "Mountain Climbers", "duration": 5 }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
@@ -100,7 +175,7 @@
           "steps": [
             {
               "type": "repetition",
-              "count": 4,
+              "count": 3,
               "restBetweenReps": 60,
               "steps": [
                 { "type": "exercise", "name": "Kettlebell Goblet Squats", "duration": 50 },
@@ -126,6 +201,7 @@
             {
               "type": "repetition",
               "count": 2,
+              "restBetweenReps": 10,
               "steps": [
                 {
                   "type": "repetition",
@@ -135,6 +211,7 @@
                     { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 20 }
                   ]
                 },
+                { "type": "rest", "duration": 10},
                 {
                   "type": "repetition",
                   "count": 2,
@@ -152,7 +229,7 @@
           "steps": [
             { "type": "exercise", "name": "Cobra Stretch", "duration": 120 },
             { "type": "exercise", "name": "Pigeon Pose (left)", "duration": 90 },
-            { "type": "exercise", "name": "Pigeon Pose (left)", "duration": 90 }
+            { "type": "exercise", "name": "Pigeon Pose (right)", "duration": 90 }
           ]
         }
       ]
