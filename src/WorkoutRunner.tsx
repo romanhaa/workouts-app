@@ -19,11 +19,57 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
     // Refs
     const audioContextRef = useRef<AudioContext | null>(null);
     const audioBufferRef = useRef<AudioBuffer | null>(null);
+    const wakeLock = useRef<WakeLockSentinel | null>(null);
 
     type FlattenedWorkoutStep = {
       step: WorkoutStep;
       sectionName?: string;
     };
+    
+    useEffect(() => {
+      const manageWakeLock = async () => {
+        if ('wakeLock' in navigator) {
+          if (!isPaused) {
+            try {
+              wakeLock.current = await navigator.wakeLock.request('screen');
+            } catch (err) {
+              console.error(`Failed to acquire wake lock: ${err}`);
+            }
+          } else {
+            if (wakeLock.current) {
+              wakeLock.current.release();
+              wakeLock.current = null;
+            }
+          }
+        }
+      };
+
+      manageWakeLock();
+
+      return () => {
+        if (wakeLock.current) {
+          wakeLock.current.release();
+        }
+      };
+    }, [isPaused]);
+
+    useEffect(() => {
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible' && !isPaused && 'wakeLock' in navigator) {
+          navigator.wakeLock.request('screen').then(lock => {
+            wakeLock.current = lock;
+          }).catch(err => {
+            console.error(`Failed to re-acquire wake lock: ${err}`);
+          });
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
+    }, [isPaused]);
 
     // Memoized computation for allSteps
     const allSteps: FlattenedWorkoutStep[] = useMemo(() => {
