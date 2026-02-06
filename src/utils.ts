@@ -1,8 +1,8 @@
 // src/utils.ts
 
-import type { Workout, WorkoutStep } from './types';
+import type { Workout, RunnabaleWorkoutStep } from './types';
 
-const _calculateStepsDuration = (steps: WorkoutStep[]): number => {
+const _calculateStepsDuration = (steps: RunnabaleWorkoutStep[]): number => {
   return steps.reduce((total, step) => {
     if (step.type === 'repetition') {
       const repetitionDuration = _calculateStepsDuration(step.steps);
@@ -14,7 +14,7 @@ const _calculateStepsDuration = (steps: WorkoutStep[]): number => {
   }, 0);
 };
 
-export const calculateStepsDuration = (steps: WorkoutStep[]): number => {
+export const calculateStepsDuration = (steps: RunnabaleWorkoutStep[]): number => {
   return _calculateStepsDuration(steps);
 };
 

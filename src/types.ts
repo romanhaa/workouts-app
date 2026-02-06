@@ -19,21 +19,22 @@ export interface RestStep extends BaseStep {
 export interface RepetitionStep extends BaseStep {
   type: 'repetition';
   count: number;
-  steps: WorkoutStep[];
+  steps: RunnabaleWorkoutStep[];
   restBetweenReps?: number; // New: Optional rest period between repetitions in seconds
 }
 
-export type WorkoutStep = ExerciseStep | RestStep | RepetitionStep;
+export type RunnableStep = ExerciseStep | RestStep;
+export type RunnabaleWorkoutStep = RunnableStep | RepetitionStep;
 
 export interface WorkoutSection {
   name: string;
-  steps: WorkoutStep[];
+  steps: RunnabaleWorkoutStep[];
 }
 
 export interface Workout {
   id: string;
   name: string;
-  steps?: WorkoutStep[]; // Make optional
+  steps?: RunnabaleWorkoutStep[]; // Make optional
   sections?: WorkoutSection[]; // New: Optional sections
   muscleGroups?: string[];
 }

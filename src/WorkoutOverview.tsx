@@ -1,5 +1,5 @@
 // src/WorkoutOverview.tsx
-import type { Workout, WorkoutStep } from './types';
+import type { Workout, RunnabaleWorkoutStep } from './types';
 import { calculateStepsDuration, calculateTotalWorkoutDuration } from './utils';
 
 interface WorkoutOverviewProps {
@@ -9,11 +9,13 @@ interface WorkoutOverviewProps {
   formatDuration: (seconds: number) => string;
 }
 
-const StepView = ({ step, formatDuration }: { step: WorkoutStep, formatDuration: (s: number) => string }) => {
+const StepView = ({ step, formatDuration }: { step: RunnabaleWorkoutStep, formatDuration: (s: number) => string }) => {
   if (step.type === 'repetition') {
     return (
       <div className="step-repetition">
-        <div className="step-repetition-header">Repeat {step.count} times</div>
+        <div className="step-repetition-header">
+          Repeat {step.count} times
+        </div>
 
         <div className="step-repetition-body">
           {step.steps.map((s, i) => <StepView key={i} step={s} formatDuration={formatDuration} />)}
@@ -37,6 +39,7 @@ const StepView = ({ step, formatDuration }: { step: WorkoutStep, formatDuration:
     </div>
   );
 };
+
 
 
 function WorkoutOverview({ workout, onStart, onBack, formatDuration }: WorkoutOverviewProps) {

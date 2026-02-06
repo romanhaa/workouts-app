@@ -1,7 +1,7 @@
 // src/WorkoutRunner.tsx
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import type { Workout, WorkoutStep } from './types';
+import type { Workout, RunnabaleWorkoutStep, RunnableStep } from './types';
 import { calculateTotalWorkoutDuration, formatTimeLeft } from './utils';
 
 interface WorkoutRunnerProps {
@@ -22,7 +22,7 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
     const wakeLock = useRef<WakeLockSentinel | null>(null);
 
     type FlattenedWorkoutStep = {
-      step: WorkoutStep;
+      step: RunnableStep;
       sectionName?: string;
     };
 
@@ -73,7 +73,7 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
 
     // Memoized computation for allSteps
     const allSteps: FlattenedWorkoutStep[] = useMemo(() => {
-      const flattenSteps = (steps: WorkoutStep[], sectionName?: string): FlattenedWorkoutStep[] => {
+      const flattenSteps = (steps: RunnabaleWorkoutStep[], sectionName?: string): FlattenedWorkoutStep[] => {
         let flattened: FlattenedWorkoutStep[] = [];
         steps.forEach(step => {
           if (step.type === 'repetition') {
@@ -100,7 +100,7 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
 
     // Derived state (re-calculated on every render if dependencies change)
     const currentFlattenedStep: FlattenedWorkoutStep | undefined = allSteps[currentStepIndex];
-    const currentStep: WorkoutStep | undefined = currentFlattenedStep?.step;
+    const currentStep: RunnableStep | undefined = currentFlattenedStep?.step;
     const currentSectionName: string | undefined = currentFlattenedStep?.sectionName;
 
     // Memoized callback for triggerFeedback
