@@ -21,7 +21,16 @@ function App() {
   useEffect(() => {
     fetch('/workouts-app/workouts.json')
       .then((response) => response.json())
-      .then((data: WorkoutData) => setWorkouts(data.workouts))
+      .then((data: WorkoutData) => {
+        if (import.meta.env.DEV) {
+          setWorkouts(data.workouts);
+        } else {
+          const filteredWorkouts = data.workouts.filter(
+            (workout) => !/^test(-\d+)?$/.test(workout.id)
+          );
+          setWorkouts(filteredWorkouts);
+        }
+      })
       .catch((error) => console.error('Error fetching workouts:', error));
   }, []);
 
