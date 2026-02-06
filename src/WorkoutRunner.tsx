@@ -27,37 +27,29 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
 
     // Memoized computation for allSteps
     const allSteps: FlattenedWorkoutStep[] = useMemo(() => {
-      const flattened: FlattenedWorkoutStep[] = [];
-      if (workout.sections) {
-        workout.sections.forEach(section => {
-          section.steps.forEach(s => {
-            if (s.type === 'repetition') {
-              for (let i = 0; i < s.count; i++) {
-                s.steps.forEach(repStep => flattened.push({ step: repStep, sectionName: section.name }));
-                if (i < s.count - 1 && s.restBetweenReps) {
-                  flattened.push({ step: { type: 'rest', duration: s.restBetweenReps }, sectionName: section.name });
-                }
+      const flattenSteps = (steps: WorkoutStep[], sectionName?: string): FlattenedWorkoutStep[] => {
+        let flattened: FlattenedWorkoutStep[] = [];
+        steps.forEach(step => {
+          if (step.type === 'repetition') {
+            for (let i = 0; i < step.count; i++) {
+              flattened = flattened.concat(flattenSteps(step.steps, sectionName));
+              if (i < step.count - 1 && step.restBetweenReps) {
+                flattened.push({ step: { type: 'rest', duration: step.restBetweenReps }, sectionName });
               }
-            } else {
-              flattened.push({ step: s, sectionName: section.name });
             }
-          });
-        });
-      } else if (workout.steps) {
-        workout.steps.forEach(s => {
-          if (s.type === 'repetition') {
-              for (let i = 0; i < s.count; i++) {
-                  s.steps.forEach(repStep => flattened.push({ step: repStep }));
-                  if (i < s.count - 1 && s.restBetweenReps) {
-                      flattened.push({ step: { type: 'rest', duration: s.restBetweenReps } });
-                  }
-              }
           } else {
-              flattened.push({ step: s });
+            flattened.push({ step, sectionName });
           }
         });
+        return flattened;
+      };
+
+      if (workout.sections) {
+        return workout.sections.flatMap(section => flattenSteps(section.steps, section.name));
+      } else if (workout.steps) {
+        return flattenSteps(workout.steps);
       }
-      return flattened;
+      return [];
     }, [workout]);
 
     // Derived state (re-calculated on every render if dependencies change)

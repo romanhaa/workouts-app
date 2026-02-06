@@ -4,17 +4,51 @@
       "id": "test",
       "name": "Test",
       "muscleGroups": ["Full Body", "Legs", "Chest", "Shoulders", "Triceps"],
-      "steps": [
-        { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
-        { "type": "rest", "duration": 5 },
+      "sections": [
         {
-          "type": "repetition",
-          "count": 3,
-          "restBetweenReps": 10,
+          "name": "Phase 1",
           "steps": [
-            { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
+            { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
             { "type": "rest", "duration": 5 },
-            { "type": "exercise", "name": "Squats", "duration": 5 }
+            {
+              "type": "repetition",
+              "count": 3,
+              "restBetweenReps": 10,
+              "steps": [
+                { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
+                { "type": "rest", "duration": 5 },
+                { "type": "exercise", "name": "Squats", "duration": 5 }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Phase 2",
+          "steps": [
+            {
+              "type": "repetition",
+              "count": 2,
+              "restBetweenReps": 5,
+              "steps": [
+                {
+                  "type": "repetition",
+                  "count": 2,
+                  "restBetweenReps": 5,
+                  "steps": [
+                    { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 5 }
+                  ]
+                },
+                { "type": "rest", "duration": 5 },
+                {
+                  "type": "repetition",
+                  "count": 2,
+                  "restBetweenReps": 5,
+                  "steps": [
+                    { "type": "exercise", "name": "Mountain Climbers", "duration": 5 }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
@@ -126,6 +160,7 @@
             {
               "type": "repetition",
               "count": 2,
+              "restBetweenReps": 10,
               "steps": [
                 {
                   "type": "repetition",
@@ -135,6 +170,7 @@
                     { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 20 }
                   ]
                 },
+                { "type": "rest", "duration": 10},
                 {
                   "type": "repetition",
                   "count": 2,
