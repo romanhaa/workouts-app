@@ -328,7 +328,10 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
 
       <div className="current-step">
         <h2>{currentStep.type === 'exercise' ? currentStep.name : 'Rest'}</h2>
-        <div className={`countdown-container ${isPaused ? 'paused' : ''}`}>
+        <div
+          className={`countdown-container ${isPaused ? 'paused' : ''}`}
+          onClick={isPaused ? handlePlayPause : undefined}
+        >
           <p className="countdown">{countdown}</p>
           {isPaused && <div className="pause-overlay"></div>}
         </div>
