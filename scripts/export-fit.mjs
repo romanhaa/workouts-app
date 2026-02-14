@@ -451,12 +451,20 @@ function createWorkoutMessages(workout, flatSteps) {
 
   // Add EXERCISE_TITLE messages (one per unique exercise)
   uniqueExercises.forEach((ex) => {
+    // Clean up the exercise name for wktStepName - remove common suffixes
+    let cleanName = ex.exerciseName
+      .replace(/\s*\(left\)$/i, '')
+      .replace(/\s*\(right\)$/i, '')
+      .replace(/\s*\(le$/i, '')  // In case it was already truncated
+      .replace(/\s*\(ri$/i, '')
+      .trim();
+    
     mesgs.push({
       mesgNum: Profile.MesgNum.EXERCISE_TITLE,
       messageIndex: ex.messageIndex,
       exerciseName: ex.name,
       exerciseCategory: getCategoryName(ex.category), // Use string name!
-      wktStepName: ex.exerciseName.slice(0, 15),
+      wktStepName: cleanName, // Let FIT encoder handle length limits
     });
   });
 
