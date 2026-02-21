@@ -401,9 +401,17 @@ function flattenWorkoutSteps(workout) {
   if (Array.isArray(workout.steps) && workout.steps.length > 0) {
     addSteps(workout.steps);
   } else if (Array.isArray(workout.sections)) {
-    for (const section of workout.sections) {
+    workout.sections.forEach((section, index) => {
       addSteps(section.steps ?? []);
-    }
+      // Add rest after section if defined and it's not the last section
+      if (section.restAfterSection && index < workout.sections.length - 1) {
+        flat.push({
+          name: "Rest Between Sections", // Descriptive name for logging
+          duration: section.restAfterSection,
+          isRest: true,
+        });
+      }
+    });
   }
 
   return flat;

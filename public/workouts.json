@@ -79,6 +79,7 @@
       "sections": [
         {
           "name": "Phase 1",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -169,6 +170,7 @@
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -226,6 +228,7 @@
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -318,6 +321,7 @@
         },
         {
           "name": "Finisher",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -350,6 +354,7 @@
         },
         {
           "name": "Cool Down & Recovery",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -411,6 +416,7 @@
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -448,6 +454,7 @@
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -554,6 +561,7 @@
         },
         {
           "name": "Leg Burn Finisher",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -604,6 +612,7 @@
         },
         {
           "name": "Cool Down & Recovery",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -653,6 +662,7 @@
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
@@ -701,6 +711,7 @@
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -757,6 +768,7 @@
         },
         {
           "name": "Cool Down",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",

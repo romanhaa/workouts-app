@@ -91,7 +91,16 @@ function WorkoutRunner({ workout, onFinish, onEnd }: WorkoutRunnerProps) {
       };
 
       if (workout.sections) {
-        return workout.sections.flatMap(section => flattenSteps(section.steps, section.name));
+        return workout.sections.reduce((acc: FlattenedWorkoutStep[], section, index) => {
+          const flattenedSectionSteps = flattenSteps(section.steps, section.name);
+          acc = acc.concat(flattenedSectionSteps);
+
+          // Add rest after section if defined and it's not the last section
+          if (section.restAfterSection && index < workout.sections!.length - 1) {
+            acc.push({ step: { type: 'rest', duration: section.restAfterSection }, sectionName: 'Rest Between Sections' });
+          }
+          return acc;
+        }, []);
       } else if (workout.steps) {
         return flattenSteps(workout.steps);
       }
