@@ -29,6 +29,7 @@ export type RunnabaleWorkoutStep = RunnableStep | RepetitionStep;
 export interface WorkoutSection {
   name: string;
   steps: RunnabaleWorkoutStep[];
+  restAfterSection?: number; // New: Optional rest period after this section in seconds
 }
 
 export interface Workout {

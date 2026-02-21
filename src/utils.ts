@@ -20,8 +20,13 @@ export const calculateStepsDuration = (steps: RunnabaleWorkoutStep[]): number =>
 
 export const calculateTotalWorkoutDuration = (workout: Workout): number => {
   if (workout.sections) {
-    return workout.sections.reduce((total, section) => {
-      return total + _calculateStepsDuration(section.steps);
+    return workout.sections.reduce((total, section, index) => {
+      let sectionTotal = _calculateStepsDuration(section.steps);
+      // Add rest after section if defined and it's not the last section
+      if (section.restAfterSection && index < workout.sections!.length - 1) {
+        sectionTotal += section.restAfterSection;
+      }
+      return total + sectionTotal;
     }, 0);
   } else if (workout.steps) {
     return _calculateStepsDuration(workout.steps);
