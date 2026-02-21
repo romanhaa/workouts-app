@@ -363,9 +363,11 @@ function flattenWorkoutSteps(workout) {
           name: step.name,
           duration: step.duration,
           isRest: false,
-          // Preserve optional exercise category and name from JSON
+          // Preserve optional exercise fields from JSON
           exerciseCategory: step.exerciseCategory,
           exerciseName: step.exerciseName,
+          wktStepName: step.wktStepName,
+          notes: step.notes,
         });
       } else if (step.type === "rest") {
         flat.push({
@@ -410,20 +412,24 @@ function flattenWorkoutSteps(workout) {
 function createWorkoutMessages(workout, flatSteps) {
   const mesgs = [];
 
-  // Collect unique exercises for EXERCISE_TITLE (one per unique exercise, not per step)
+  // Collect unique exercises for EXERCISE_TITLE
+  // Key is based on category + name + wktStepName to avoid duplicates
   const uniqueExercises = new Map();
   let exerciseTitleIndex = 0;
   
   for (const step of flatSteps) {
     if (!step.isRest) {
       const { category, name } = getExerciseCategoryAndName(step.name, step);
-      const key = `${category}-${name}`;
+      const wktStepName = step.wktStepName || step.name;
+      
+      // Use category + name + wktStepName as the uniqueness key
+      const key = `${category}-${name}-${wktStepName}`;
       
       if (!uniqueExercises.has(key)) {
         uniqueExercises.set(key, {
           category,
           name,
-          exerciseName: step.name,
+          wktStepName: wktStepName,
           messageIndex: exerciseTitleIndex++
         });
       }
@@ -449,22 +455,14 @@ function createWorkoutMessages(workout, flatSteps) {
     wktName: workout.name.slice(0, 15),
   });
 
-  // Add EXERCISE_TITLE messages (one per unique exercise)
+  // Add EXERCISE_TITLE messages (one per unique exercise name)
   uniqueExercises.forEach((ex) => {
-    // Clean up the exercise name for wktStepName - remove common suffixes
-    let cleanName = ex.exerciseName
-      .replace(/\s*\(left\)$/i, '')
-      .replace(/\s*\(right\)$/i, '')
-      .replace(/\s*\(le$/i, '')  // In case it was already truncated
-      .replace(/\s*\(ri$/i, '')
-      .trim();
-    
     mesgs.push({
       mesgNum: Profile.MesgNum.EXERCISE_TITLE,
       messageIndex: ex.messageIndex,
       exerciseName: ex.name,
-      exerciseCategory: getCategoryName(ex.category), // Use string name!
-      wktStepName: cleanName, // Let FIT encoder handle length limits
+      exerciseCategory: getCategoryName(ex.category),
+      wktStepName: ex.wktStepName,
     });
   });
 
@@ -503,9 +501,9 @@ function createWorkoutMessages(workout, flatSteps) {
       stepMessage.exerciseWeight = 0;
       stepMessage.weightDisplayUnit = "kilogram";
       
-      // Optional: add notes
-      if (step.name) {
-        stepMessage.notes = step.name;
+      // Add notes if provided in JSON
+      if (step.notes) {
+        stepMessage.notes = step.notes;
       }
     }
     
