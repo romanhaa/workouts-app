@@ -4,16 +4,36 @@
       "id": "test-1",
       "name": "Test workout without sections",
       "steps": [
-        { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
-        { "type": "rest", "duration": 5 },
+        {
+          "type": "exercise",
+          "name": "Jumping Jacks",
+          "duration": 5,
+          "description": "Some description."
+        },
+        {
+          "type": "rest",
+          "duration": 5
+        },
         {
           "type": "repetition",
           "count": 3,
           "restBetweenReps": 10,
           "steps": [
-            { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
-            { "type": "rest", "duration": 5 },
-            { "type": "exercise", "name": "Squats", "duration": 5 }
+            {
+              "type": "exercise",
+              "name": "Push-ups",
+              "duration": 5,
+              "description": "Keep your back straight and core tight."
+            },
+            {
+              "type": "rest",
+              "duration": 5
+            },
+            {
+              "type": "exercise",
+              "name": "Squats",
+              "duration": 5
+            }
           ]
         },
         {
@@ -26,16 +46,27 @@
               "count": 2,
               "restBetweenReps": 5,
               "steps": [
-                { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 5 }
+                {
+                  "type": "exercise",
+                  "name": "Kettlebell Thrusters",
+                  "duration": 5
+                }
               ]
             },
-            { "type": "rest", "duration": 5 },
+            {
+              "type": "rest",
+              "duration": 5
+            },
             {
               "type": "repetition",
               "count": 2,
               "restBetweenReps": 5,
               "steps": [
-                { "type": "exercise", "name": "Mountain Climbers", "duration": 5 }
+                {
+                  "type": "exercise",
+                  "name": "Mountain Climbers",
+                  "duration": 5
+                }
               ]
             }
           ]
@@ -48,17 +79,38 @@
       "sections": [
         {
           "name": "Phase 1",
+          "restAfterSection": 10,
           "steps": [
-            { "type": "exercise", "name": "Jumping Jacks", "duration": 5, "description": "Some description." },
-            { "type": "rest", "duration": 5 },
+            {
+              "type": "exercise",
+              "name": "Jumping Jacks",
+              "duration": 5,
+              "description": "Some description."
+            },
+            {
+              "type": "rest",
+              "duration": 5
+            },
             {
               "type": "repetition",
               "count": 3,
               "restBetweenReps": 10,
               "steps": [
-                { "type": "exercise", "name": "Push-ups", "duration": 5, "description": "Keep your back straight and core tight." },
-                { "type": "rest", "duration": 5 },
-                { "type": "exercise", "name": "Squats", "duration": 5 }
+                {
+                  "type": "exercise",
+                  "name": "Push-ups",
+                  "duration": 5,
+                  "description": "Keep your back straight and core tight."
+                },
+                {
+                  "type": "rest",
+                  "duration": 5
+                },
+                {
+                  "type": "exercise",
+                  "name": "Squats",
+                  "duration": 5
+                }
               ]
             }
           ]
@@ -76,16 +128,27 @@
                   "count": 2,
                   "restBetweenReps": 5,
                   "steps": [
-                    { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 5 }
+                    {
+                      "type": "exercise",
+                      "name": "Kettlebell Thrusters",
+                      "duration": 5
+                    }
                   ]
                 },
-                { "type": "rest", "duration": 5 },
+                {
+                  "type": "rest",
+                  "duration": 5
+                },
                 {
                   "type": "repetition",
                   "count": 2,
                   "restBetweenReps": 5,
                   "steps": [
-                    { "type": "exercise", "name": "Mountain Climbers", "duration": 5 }
+                    {
+                      "type": "exercise",
+                      "name": "Mountain Climbers",
+                      "duration": 5
+                    }
                   ]
                 }
               ]
@@ -97,62 +160,244 @@
     {
       "id": "dry-land-swimmer",
       "name": "Dry-Land Swimmer",
-      "muscleGroups": ["Full Body", "Back", "Shoulders", "Core", "Biceps"],
+      "muscleGroups": [
+        "Full Body",
+        "Back",
+        "Shoulders",
+        "Core",
+        "Biceps"
+      ],
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
-            { "type": "exercise", "name": "Arm Circles (left)", "duration": 30},
-            { "type": "exercise", "name": "Arm Circles (right)", "duration": 30},
-            { "type": "exercise", "name": "Cat-Cow", "duration": 60},
-            { "type": "exercise", "name": "Bird-Dog", "duration": 60},
-            { "type": "exercise", "name": "Plank to Downward Dog", "duration": 120}
+            {
+              "type": "exercise",
+              "name": "Arm Circles (left)",
+              "duration": 30,
+              "exerciseCategory": 31,
+              "exerciseName": 5,
+              "wktStepName": "Arm Circles",
+              "notes": "left",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "armCircles"
+            },
+            {
+              "type": "exercise",
+              "name": "Arm Circles (right)",
+              "duration": 30,
+              "exerciseCategory": 31,
+              "exerciseName": 5,
+              "wktStepName": "Arm Circles",
+              "notes": "right",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "armCircles"
+            },
+            {
+              "type": "exercise",
+              "name": "Cat-Cow",
+              "duration": 60,
+              "exerciseCategory": 5,
+              "exerciseName": 51,
+              "wktStepName": "Cat-Cow",
+              "_categoryName": "core",
+              "_exerciseNameId": "catCow"
+            },
+            {
+              "type": "exercise",
+              "name": "Bird-Dog",
+              "duration": 60,
+              "exerciseCategory": 5,
+              "exerciseName": 48,
+              "wktStepName": "Bird-Dog",
+              "_categoryName": "core",
+              "_exerciseNameId": "armAndLegExtensionOnKnees"
+            },
+            {
+              "type": "exercise",
+              "name": "Plank to Downward Dog",
+              "duration": 120,
+              "exerciseCategory": 19,
+              "exerciseName": 50,
+              "wktStepName": "Plank to Downward Dog",
+              "_categoryName": "plank",
+              "_exerciseNameId": "plankPikes"
+            }
           ]
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
               "count": 3,
               "restBetweenReps": 90,
               "steps": [
-                { "type": "exercise", "name": "Scapular Pull-ups", "duration": 45},
-                { "type": "rest", "duration": 15 },
-                { "type": "exercise", "name": "Kettlebell Swings", "duration": 45},
-                { "type": "rest", "duration": 15 },
-                { "type": "exercise", "name": "Superman rows", "duration": 45},
-                { "type": "rest", "duration": 15 },
-                { "type": "exercise", "name": "Gorilla rows", "duration": 45 },
-                { "type": "rest", "duration": 15 },
-                { "type": "exercise", "name": "Hollow Body Hold", "duration": 45 },
-                { "type": "rest", "duration": 15 },
-                { "type": "exercise", "name": "Chin-ups", "duration": 45 }
+                {
+                  "type": "exercise",
+                  "name": "Scapular Pull-ups",
+                  "duration": 45,
+                  "exerciseCategory": 21,
+                  "exerciseName": 0,
+                  "wktStepName": "Scap Pull-ups",
+                  "_categoryName": "pullUp",
+                  "_exerciseNameId": "bandedPullUps"
+                },
+                {
+                  "type": "rest",
+                  "duration": 15
+                },
+                {
+                  "type": "exercise",
+                  "name": "Kettlebell Swings",
+                  "duration": 45,
+                  "exerciseCategory": 10,
+                  "exerciseName": 23,
+                  "wktStepName": "KB Swings",
+                  "_categoryName": "hipRaise",
+                  "_exerciseNameId": "kettlebellSwing"
+                },
+                {
+                  "type": "rest",
+                  "duration": 15
+                },
+                {
+                  "type": "exercise",
+                  "name": "Superman rows",
+                  "duration": 45,
+                  "exerciseCategory": 13,
+                  "exerciseName": 29,
+                  "wktStepName": "Superman Rows",
+                  "_categoryName": "hyperextension",
+                  "_exerciseNameId": "supermanFromFloor"
+                },
+                {
+                  "type": "rest",
+                  "duration": 15
+                },
+                {
+                  "type": "exercise",
+                  "name": "Gorilla rows",
+                  "duration": 45,
+                  "exerciseCategory": 23,
+                  "exerciseName": 34,
+                  "wktStepName": "Gorilla Rows",
+                  "_categoryName": "row",
+                  "_exerciseNameId": "alternatingDumbbellRow"
+                },
+                {
+                  "type": "rest",
+                  "duration": 15
+                },
+                {
+                  "type": "exercise",
+                  "name": "Hollow Body Hold",
+                  "duration": 45,
+                  "exerciseCategory": 6,
+                  "exerciseName": 0,
+                  "wktStepName": "Hollow Body Hold",
+                  "_categoryName": "crunch",
+                  "_exerciseNameId": "absJabs"
+                },
+                {
+                  "type": "rest",
+                  "duration": 15
+                },
+                {
+                  "type": "exercise",
+                  "name": "Chin-ups",
+                  "duration": 45,
+                  "exerciseCategory": 21,
+                  "exerciseName": 39,
+                  "wktStepName": "Chin-ups",
+                  "_categoryName": "pullUp",
+                  "_exerciseNameId": "chinUp"
+                }
               ]
             }
           ]
         },
         {
           "name": "Finisher",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
               "count": 3,
               "restBetweenReps": 30,
               "steps": [
-                { "type": "exercise", "name": "Dumbbell Lateral Raises", "duration": 30},
-                { "type": "exercise", "name": "Dumbbell Front Raises", "duration": 30}
+                {
+                  "type": "exercise",
+                  "name": "Dumbbell Lateral Raises",
+                  "duration": 30,
+                  "exerciseCategory": 14,
+                  "exerciseName": 34,
+                  "wktStepName": "DB Lateral Raises",
+                  "_categoryName": "lateralRaise",
+                  "_exerciseNameId": "dumbbellLateralRaise"
+                },
+                {
+                  "type": "exercise",
+                  "name": "Dumbbell Front Raises",
+                  "duration": 30,
+                  "exerciseCategory": 14,
+                  "exerciseName": 10,
+                  "wktStepName": "DB Front Raises",
+                  "_categoryName": "lateralRaise",
+                  "_exerciseNameId": "frontRaise"
+                }
               ]
             }
           ]
         },
         {
           "name": "Cool Down & Recovery",
+          "restAfterSection": 10,
           "steps": [
-            { "type": "exercise", "name": "Child's Pose", "duration": 120},
-            { "type": "exercise", "name": "Doorway Chest Stretch (left)", "duration": 90},
-            { "type": "exercise", "name": "Doorway Chest Stretch (right)", "duration": 90},
-            { "type": "exercise", "name": "Forward Fold", "duration": 60}
+            {
+              "type": "exercise",
+              "name": "Child's Pose",
+              "duration": 120,
+              "exerciseCategory": 31,
+              "exerciseName": 39,
+              "wktStepName": "Child's Pose",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchChildsPose"
+            },
+            {
+              "type": "exercise",
+              "name": "Doorway Chest Stretch (left)",
+              "duration": 90,
+              "exerciseCategory": 31,
+              "exerciseName": 58,
+              "wktStepName": "Doorway Chest Stretch",
+              "notes": "left",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchPectoral"
+            },
+            {
+              "type": "exercise",
+              "name": "Doorway Chest Stretch (right)",
+              "duration": 90,
+              "exerciseCategory": 31,
+              "exerciseName": 58,
+              "wktStepName": "Doorway Chest Stretch",
+              "notes": "right",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchPectoral"
+            },
+            {
+              "type": "exercise",
+              "name": "Forward Fold",
+              "duration": 60,
+              "exerciseCategory": 35,
+              "exerciseName": 12,
+              "wktStepName": "Forward Fold",
+              "_categoryName": "move",
+              "_exerciseNameId": "forwardFold"
+            }
           ]
         }
       ]
@@ -160,43 +405,163 @@
     {
       "id": "front-chain-and-foundation",
       "name": "Front Chain & Foundation",
-      "muscleGroups": ["Full Body", "Legs", "Glutes", "Chest", "Triceps", "Core"],
+      "muscleGroups": [
+        "Full Body",
+        "Legs",
+        "Glutes",
+        "Chest",
+        "Triceps",
+        "Core"
+      ],
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
-            { "type": "exercise", "name": "World's Greatest Stretch", "duration": 120, "description": "Lunge forward, elbow to instead, then rotate arm to sky." },
-            { "type": "exercise", "name": "Glute Bridges", "duration": 60 },
-            { "type": "exercise", "name": "Air Squats", "duration": 120, "description": "Slow and controlled to prep the knees." }
+            {
+              "type": "exercise",
+              "name": "World's Greatest Stretch",
+              "duration": 120,
+              "description": "Lunge forward, elbow to instep, then rotate arm to sky.",
+              "exerciseCategory": 31,
+              "exerciseName": 48,
+              "wktStepName": "World's Greatest Stretch",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchLungeWithSpinalTwist"
+            },
+            {
+              "type": "exercise",
+              "name": "Glute Bridges",
+              "duration": 60,
+              "exerciseCategory": 10,
+              "exerciseName": 11,
+              "wktStepName": "Glute Bridges",
+              "_categoryName": "hipRaise",
+              "_exerciseNameId": "hipRaise"
+            },
+            {
+              "type": "exercise",
+              "name": "Air Squats",
+              "duration": 120,
+              "description": "Slow and controlled to prep the knees.",
+              "exerciseCategory": 28,
+              "exerciseName": 100,
+              "wktStepName": "Air Squats",
+              "_categoryName": "squat",
+              "_exerciseNameId": "airSquat"
+            }
           ]
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
               "count": 3,
               "restBetweenReps": 60,
               "steps": [
-                { "type": "exercise", "name": "Kettlebell Goblet Squats", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Push-ups", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Kettlebell Lunges", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Floor Press", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Lateral Lunges", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Tricep Dips", "duration": 50 },
-                { "type": "rest", "duration": 10},
-                { "type": "exercise", "name": "Plank with Shoulder Taps", "duration": 50 }
+                {
+                  "type": "exercise",
+                  "name": "Kettlebell Goblet Squats",
+                  "duration": 50,
+                  "exerciseCategory": 28,
+                  "exerciseName": 37,
+                  "wktStepName": "KB Goblet Squats",
+                  "_categoryName": "squat",
+                  "_exerciseNameId": "gobletSquat"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "Push-ups",
+                  "duration": 50,
+                  "exerciseCategory": 22,
+                  "exerciseName": 77,
+                  "wktStepName": "Push-ups",
+                  "_categoryName": "pushUp",
+                  "_exerciseNameId": "pushUp"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "Kettlebell Lunges",
+                  "duration": 50,
+                  "exerciseCategory": 17,
+                  "exerciseName": 21,
+                  "wktStepName": "KB Lunges",
+                  "_categoryName": "lunge",
+                  "_exerciseNameId": "dumbbellLunge"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "KB Floor Press",
+                  "duration": 50,
+                  "exerciseCategory": 0,
+                  "exerciseName": 3,
+                  "wktStepName": "KB Floor Press",
+                  "_categoryName": "benchPress",
+                  "_exerciseNameId": "barbellFloorPress"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "Lateral Lunges",
+                  "duration": 50,
+                  "exerciseCategory": 17,
+                  "exerciseName": 61,
+                  "wktStepName": "Lateral Lunges",
+                  "_categoryName": "lunge",
+                  "_exerciseNameId": "sideLunge"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "Tricep Dips",
+                  "duration": 50,
+                  "exerciseCategory": 30,
+                  "exerciseName": 2,
+                  "wktStepName": "Tricep Dips",
+                  "_categoryName": "tricepsExtension",
+                  "_exerciseNameId": "bodyWeightDip"
+                },
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
+                {
+                  "type": "exercise",
+                  "name": "Plank with Shoulder Taps",
+                  "duration": 50,
+                  "exerciseCategory": 19,
+                  "exerciseName": 94,
+                  "wktStepName": "Plank + Shoulder Taps",
+                  "_categoryName": "plank",
+                  "_exerciseNameId": "straightArmPlankWithShoulderTouch"
+                }
               ]
             }
           ]
         },
         {
           "name": "Leg Burn Finisher",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -208,16 +573,37 @@
                   "count": 2,
                   "restBetweenReps": 10,
                   "steps": [
-                    { "type": "exercise", "name": "Kettlebell Thrusters", "duration": 20 }
+                    {
+                      "type": "exercise",
+                      "name": "Kettlebell Thrusters",
+                      "duration": 20,
+                      "exerciseCategory": 28,
+                      "exerciseName": 79,
+                      "wktStepName": "KB Thrusters",
+                      "_categoryName": "squat",
+                      "_exerciseNameId": "thrusters"
+                    }
                   ]
                 },
-                { "type": "rest", "duration": 10},
+                {
+                  "type": "rest",
+                  "duration": 10
+                },
                 {
                   "type": "repetition",
                   "count": 2,
                   "restBetweenReps": 10,
                   "steps": [
-                    { "type": "exercise", "name": "Mountain Climbers", "duration": 20 }
+                    {
+                      "type": "exercise",
+                      "name": "Mountain Climbers",
+                      "duration": 20,
+                      "exerciseCategory": 19,
+                      "exerciseName": 34,
+                      "wktStepName": "Mountain Climbers",
+                      "_categoryName": "plank",
+                      "_exerciseNameId": "mountainClimber"
+                    }
                   ]
                 }
               ]
@@ -226,10 +612,40 @@
         },
         {
           "name": "Cool Down & Recovery",
+          "restAfterSection": 10,
           "steps": [
-            { "type": "exercise", "name": "Cobra Stretch", "duration": 120 },
-            { "type": "exercise", "name": "Pigeon Pose (left)", "duration": 90 },
-            { "type": "exercise", "name": "Pigeon Pose (right)", "duration": 90 }
+            {
+              "type": "exercise",
+              "name": "Cobra Stretch",
+              "duration": 120,
+              "exerciseCategory": 13,
+              "exerciseName": 38,
+              "wktStepName": "Cobra Stretch",
+              "_categoryName": "hyperextension",
+              "_exerciseNameId": "cobra"
+            },
+            {
+              "type": "exercise",
+              "name": "Pigeon Pose (left)",
+              "duration": 90,
+              "exerciseCategory": 31,
+              "exerciseName": 59,
+              "wktStepName": "Pigeon Pose",
+              "notes": "left",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchPigeonPose"
+            },
+            {
+              "type": "exercise",
+              "name": "Pigeon Pose (right)",
+              "duration": 90,
+              "exerciseCategory": 31,
+              "exerciseName": 59,
+              "wktStepName": "Pigeon Pose",
+              "notes": "right",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchPigeonPose"
+            }
           ]
         }
       ]
@@ -237,22 +653,38 @@
     {
       "id": "animal-flow-posture-reset",
       "name": "Primal Posture Flow",
-      "muscleGroups": ["Back", "Shoulders", "Core", "Hips"],
+      "muscleGroups": [
+        "Back",
+        "Shoulders",
+        "Core",
+        "Hips"
+      ],
       "sections": [
         {
           "name": "Warm-up",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
               "name": "Deep Squat",
               "duration": 60,
-              "description": "Sit as deep as possible. Shift weight side to side to wake up ankles and hips."
+              "description": "Sit as deep as possible. Shift weight side to side to wake up ankles and hips.",
+              "exerciseCategory": 28,
+              "exerciseName": 61,
+              "wktStepName": "Deep Squat",
+              "_categoryName": "squat",
+              "_exerciseNameId": "squat"
             },
             {
               "type": "exercise",
               "name": "Wrist Circles",
               "duration": 60,
-              "description": "Roll wrists out thoroughly to prepare for weight-bearing positions."
+              "description": "Roll wrists out thoroughly to prepare for weight-bearing positions.",
+              "exerciseCategory": 31,
+              "exerciseName": 41,
+              "wktStepName": "Wrist Circles",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchForearms"
             },
             {
               "type": "repetition",
@@ -262,7 +694,12 @@
                   "type": "exercise",
                   "name": "Beast Hold",
                   "duration": 20,
-                  "description": "On all fours, tuck toes, lift knees 1 inch off floor. Keep back flat like a table."
+                  "description": "On all fours, tuck toes, lift knees 1 inch off floor. Keep back flat like a table.",
+                  "exerciseCategory": 10,
+                  "exerciseName": 28,
+                  "wktStepName": "Beast Hold",
+                  "_categoryName": "hipRaise",
+                  "_exerciseNameId": "reverseHipRaise"
                 },
                 {
                   "type": "rest",
@@ -274,6 +711,7 @@
         },
         {
           "name": "Main Circuit",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "repetition",
@@ -284,25 +722,45 @@
                   "type": "exercise",
                   "name": "Bear Crawl",
                   "duration": 45,
-                  "description": "Opposite hand and foot move together. Keep hips lower than shoulders."
+                  "description": "Opposite hand and foot move together. Keep hips lower than shoulders.",
+                  "exerciseCategory": 19,
+                  "exerciseName": 4,
+                  "wktStepName": "Bear Crawl",
+                  "_categoryName": "plank",
+                  "_exerciseNameId": "bearCrawl"
                 },
                 {
                   "type": "exercise",
                   "name": "Supported Reach",
                   "duration": 45,
-                  "description": "From deep squat, reach one hand back, drive hips up, and twist toward the back corner."
+                  "description": "From deep squat, reach one hand back, drive hips up, and twist toward the back corner.",
+                  "exerciseCategory": 13,
+                  "exerciseName": 0,
+                  "wktStepName": "Supported Reach",
+                  "_categoryName": "hyperextension",
+                  "_exerciseNameId": "backExtensionWithOppositeArmAndLegReach"
                 },
                 {
                   "type": "exercise",
                   "name": "Cross Body Control",
                   "duration": 45,
-                  "description": "From Beast, thread leg through, extend it, and pull the top elbow back."
+                  "description": "From Beast, thread leg through, extend it, and pull the top elbow back.",
+                  "exerciseCategory": 5,
+                  "exerciseName": 0,
+                  "wktStepName": "Cross Body Control",
+                  "_categoryName": "core",
+                  "_exerciseNameId": "absJabs"
                 },
                 {
                   "type": "exercise",
                   "name": "Hip Flow",
                   "duration": 45,
-                  "description": "Sit with knees at 90/90. Switch knees side to side without using hands if possible."
+                  "description": "Sit with knees at 90/90. Switch knees side to side without using hands if possible.",
+                  "exerciseCategory": 11,
+                  "exerciseName": 0,
+                  "wktStepName": "Hip Flow",
+                  "_categoryName": "hipStability",
+                  "_exerciseNameId": "bandSideLyingLegRaise"
                 }
               ]
             }
@@ -310,18 +768,29 @@
         },
         {
           "name": "Cool Down",
+          "restAfterSection": 10,
           "steps": [
             {
               "type": "exercise",
               "name": "Static Deep Squat",
               "duration": 120,
-              "description": "Sit in the bottom of the squat and breathe deeply to reset the spine."
+              "description": "Sit in the bottom of the squat and breathe deeply to reset the spine.",
+              "exerciseCategory": 28,
+              "exerciseName": 61,
+              "wktStepName": "Static Deep Squat",
+              "_categoryName": "squat",
+              "_exerciseNameId": "squat"
             },
             {
               "type": "exercise",
               "name": "Wrist Release",
               "duration": 120,
-              "description": "Fold hands together and make figure eights to release tension."
+              "description": "Fold hands together and make figure eights to release tension.",
+              "exerciseCategory": 31,
+              "exerciseName": 41,
+              "wktStepName": "Wrist Release",
+              "_categoryName": "warmUp",
+              "_exerciseNameId": "stretchForearms"
             }
           ]
         }
@@ -330,37 +799,66 @@
     {
       "id": "daily-anti-slouch-reset",
       "name": "5-Minute Anti-Slouch Reset",
-      "muscleGroups": ["Upper Back", "Chest", "Neck"],
+      "muscleGroups": [
+        "Upper Back",
+        "Chest",
+        "Neck"
+      ],
       "steps": [
         {
           "type": "exercise",
           "name": "Wall Angels",
           "duration": 60,
-          "description": "Back against wall, head and tailbone touching. Slide arms up and down like a snow angel without arching lower back."
+          "description": "Back against wall, head and tailbone touching. Slide arms up and down like a snow angel without arching lower back.",
+          "exerciseCategory": 25,
+          "exerciseName": 0,
+          "wktStepName": "Wall Angels",
+          "_categoryName": "shoulderStability",
+          "_exerciseNameId": "90DegreeCableExternalRotation"
         },
         {
           "type": "exercise",
           "name": "Prone Y-W Raises",
           "duration": 60,
-          "description": "Lay on belly, lift chest slightly. Reach arms to a 'Y', then pull elbows to ribs to make a 'W', squeezing shoulder blades."
+          "description": "Lay on belly, lift chest slightly. Reach arms to a 'Y', then pull elbows to ribs to make a 'W', squeezing shoulder blades.",
+          "exerciseCategory": 14,
+          "exerciseName": 0,
+          "wktStepName": "Y-W Raises",
+          "_categoryName": "lateralRaise",
+          "_exerciseNameId": "45DegreeCableExternalRotation"
         },
         {
           "type": "exercise",
           "name": "Cat-Cow",
           "duration": 60,
-          "description": "On all fours, cycle between arching and rounding. Focus on dropping the belly and lifting the chest (Cow) to mobilize the mid-back."
+          "description": "On all fours, cycle between arching and rounding. Focus on dropping the belly and lifting the chest (Cow) to mobilize the mid-back.",
+          "exerciseCategory": 5,
+          "exerciseName": 51,
+          "wktStepName": "Cat-Cow",
+          "_categoryName": "core",
+          "_exerciseNameId": "catCow"
         },
         {
           "type": "exercise",
           "name": "Thoracic Extension",
           "duration": 60,
-          "description": "Lay over a rolled-up towel or foam roller placed horizontally across your mid-back. Let your head fall back gently."
+          "description": "Lay over a rolled-up towel or foam roller placed horizontally across your mid-back. Let your head fall back gently.",
+          "exerciseCategory": 13,
+          "exerciseName": 0,
+          "wktStepName": "Thoracic Extension",
+          "_categoryName": "hyperextension",
+          "_exerciseNameId": "backExtensionWithOppositeArmAndLegReach"
         },
         {
           "type": "exercise",
           "name": "Chin Tucks",
           "duration": 60,
-          "description": "While standing, pull your chin straight back to create a 'double chin'. Strengthens neck flexors to stop head drift."
+          "description": "While standing, pull your chin straight back to create a 'double chin'. Strengthens neck flexors to stop head drift.",
+          "exerciseCategory": 31,
+          "exerciseName": 55,
+          "wktStepName": "Chin Tucks",
+          "_categoryName": "warmUp",
+          "_exerciseNameId": "stretchNeck"
         }
       ]
     }
