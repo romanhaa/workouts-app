@@ -116,8 +116,8 @@ const EXERCISE_NAMES = {
   },
   28: { // squat
     0: "squat",
-    11: "gobletSquat",
-    20: "thruster",
+    37: "gobletSquat",
+    79: "thruster",
   },
   17: { // lunge
     0: "overheadLunge",
@@ -185,6 +185,10 @@ function getExerciseNameString(categoryId, nameId) {
   return `EXERCISE_${nameId}`;
 }
 
+function normalizeExerciseName(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
 const EXERCISE_MAPPING = {
   // Push-ups (category 22)
   "Push-ups": { category: 22, name: 0 }, // STANDARD_PUSH_UP
@@ -195,8 +199,8 @@ const EXERCISE_MAPPING = {
   "Squats": { category: 28, name: 0 }, // BASIC_SQUAT
   "Squat": { category: 28, name: 0 },
   "Air Squats": { category: 28, name: 0 },
-  "Kettlebell Goblet Squats": { category: 28, name: 11 }, // GOBLET_SQUAT
-  "Kettlebell Goblet Squat": { category: 28, name: 11 },
+  "Kettlebell Goblet Squats": { category: 28, name: 37 }, // gobletSquat
+  "Kettlebell Goblet Squat": { category: 28, name: 37 },
   
   // Lunges (category 17)
   "Lunges": { category: 17, name: 0 }, // ALTERNATING_LUNGE
@@ -221,9 +225,9 @@ const EXERCISE_MAPPING = {
   "Mountain Climbers": { category: 6, name: 10 }, // CROSS_BODY_MOUNTAIN_CLIMBER
   "Mountain Climber": { category: 6, name: 10 },
   
-  // Deadlifts / Hip Hinge (category 8)
-  "Kettlebell Swings": { category: 8, name: 7 }, // SINGLE_ARM_DEADLIFT (or use category 12 = HIP_SWING)
-  "Kettlebell Swing": { category: 8, name: 7 },
+  // Hip raise (category 10 = HIP_RAISE)
+  "Kettlebell Swings": { category: 10, name: 23 }, // kettlebellSwing
+  "Kettlebell Swing": { category: 10, name: 23 },
   
   // Shoulder exercises (category 14 = lateralRaise)
   "Dumbbell Lateral Raise": { category: 14, name: 34 }, // dumbbellLateralRaise
@@ -233,6 +237,7 @@ const EXERCISE_MAPPING = {
   
   // Pressing movements (category 0 = BENCH_PRESS)
   "Floor Press": { category: 0, name: 2 }, // CLOSE_GRIP_BENCH_PRESS
+  "KB Floor Press": { category: 0, name: 12 }, // kettlebellChestPress
   
   // Tricep exercises (category 30)
   "Tricep Dips": { category: 30, name: 5 }, // DIP
@@ -246,11 +251,11 @@ const EXERCISE_MAPPING = {
   "Glute Bridge": { category: 10, name: 0 },
   
   // Jumping exercises (category 29 = TOTAL_BODY)
-  "Jumping Jacks": { category: 29, name: 1 }, // BURPEE (closest match)
+  "Jumping Jacks": { category: 2, name: 12 }, // jumpingJacks in cardio
   
   // Complex movements
-  "Kettlebell Thrusters": { category: 28, name: 20 }, // THRUSTER
-  "Kettlebell Thruster": { category: 28, name: 20 },
+  "Kettlebell Thrusters": { category: 28, name: 79 }, // thrusters
+  "Kettlebell Thruster": { category: 28, name: 79 },
   
   // Stretches and mobility (many will fall back to user-defined)
   "Cat-Cow": { category: 5, name: 0 }, // CORE
@@ -286,8 +291,11 @@ const EXERCISE_MAPPING = {
   "Supported Reach": { category: 29, name: 0 },
   "Cross Body Control": { category: 5, name: 0 }, // CORE
   "Hip Flow": { category: 11, name: 0 }, // HIP_STABILITY
-  "Wrist Circles": { category: 29, name: 0 },
 };
+
+const NORMALIZED_EXERCISE_MAPPING = new Map(
+  Object.entries(EXERCISE_MAPPING).map(([key, value]) => [normalizeExerciseName(key), value])
+);
 
 /**
  * Get exercise category and name for a given exercise.
@@ -320,8 +328,8 @@ function getExerciseCategoryAndName(exerciseName, stepData = {}) {
     };
   }
   
-  // Priority 2: Try string matching via EXERCISE_MAPPING
-  const mapping = EXERCISE_MAPPING[exerciseName];
+  // Priority 2: Try string matching via normalized lookup
+  const mapping = NORMALIZED_EXERCISE_MAPPING.get(normalizeExerciseName(exerciseName));
   if (mapping) {
     return {
       category: mapping.category,
@@ -583,7 +591,7 @@ function main() {
   uniqueSteps.forEach(step => {
     if (typeof step.exerciseCategory === 'number' && typeof step.exerciseName === 'number') {
       explicitlyMapped.push(step);
-    } else if (EXERCISE_MAPPING[step.name]) {
+    } else if (NORMALIZED_EXERCISE_MAPPING.has(normalizeExerciseName(step.name))) {
       stringMapped.push(step);
     } else {
       unmapped.push({ name: step.name });
@@ -605,7 +613,7 @@ function main() {
   if (stringMapped.length > 0) {
     console.log("\n✓ String-matched exercises (from EXERCISE_MAPPING):");
     stringMapped.forEach(step => {
-      const mapping = EXERCISE_MAPPING[step.name];
+      const mapping = NORMALIZED_EXERCISE_MAPPING.get(normalizeExerciseName(step.name));
       const categoryName = getCategoryName(mapping.category);
       const exerciseName = getExerciseNameString(mapping.category, mapping.name);
       console.log(`  ${step.name}`);
