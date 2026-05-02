@@ -14,9 +14,8 @@ dist-ssr
 .env
 *.local
 
-# FIT exports
-exports/
-*.fit
+# Test workout exports
+exports/test-*.fit
 
 # Raw Garmin Connect exercise data dumps (processed into exercises.tsv)
 GARMIN\ CONNECT\ EXERCICES*
