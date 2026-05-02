@@ -18,6 +18,10 @@ dist-ssr
 exports/
 *.fit
 
+# Raw Garmin Connect exercise data dumps (processed into exercises.tsv)
+GARMIN\ CONNECT\ EXERCICES*
+QUICK_START.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
