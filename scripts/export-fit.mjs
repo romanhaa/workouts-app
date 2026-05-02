@@ -460,7 +460,7 @@ function createWorkoutMessages(workout, flatSteps) {
     sport: "training",
     subSport: "strengthTraining",
     numValidSteps: flatSteps.length,
-    wktName: workout.name.slice(0, 15),
+    wktName: workout.name,
   });
 
   // Add EXERCISE_TITLE messages (one per unique exercise name)
